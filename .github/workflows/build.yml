@@ -1,23 +1,5 @@
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'firmware/**'
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'firmware/**'
-  schedule:
-    - cron: '0 0 * * SAT'
-  workflow_dispatch:
-
-name: Firmware
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  ZMK:
+  build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    with:
-      build_matrix_path: firmware/build.yml
-      config_path: firmware
